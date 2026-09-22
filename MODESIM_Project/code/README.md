@@ -13,7 +13,7 @@
 ## Main saved outputs
 
 Baseline simulation files are saved in `../data/processed/`.
-Tables are saved in `../outputs/tables/`.
-Figures are saved in `../outputs/figures/`.
+Tables are saved in `../output/tables/`.
+Figures are saved in `../output/figures/`.
 
 
