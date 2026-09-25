@@ -1,0 +1,4 @@
+Scenario,Demand Multiplier,Passenger Total per Replication,Trips Removed per Hour,Morning Service Budget (trips),Evening Service Budget (trips),Total Trips,Replications,Master Seed,Notes
+Baseline,1.0,776,0,43,44,87,30,2026,Reference condition. Unmodified from m66_baseline_simulation.ipynb.
+High-Demand,1.4,1083,0,43,44,87,30,2026,"Study-stop passenger demand scaled x1.40 (deterministic rounding); reference GTFS service, initial occupancy, and alighting targets unchanged from Baseline."
+Reduced-Service,1.0,776,1,38,39,77,30,2026,One trip removed per study hour using the deterministic median-position rule (Section 5); passenger demand unchanged from Baseline; initial occupancy and alighting recomputed for the remaining trips.
