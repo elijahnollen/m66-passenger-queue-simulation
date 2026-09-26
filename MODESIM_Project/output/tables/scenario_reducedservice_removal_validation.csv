@@ -1,0 +1,6 @@
+Check,Passed
+Removed trip is closest to hour midpoint (independent recheck),True
+Tie-break selects the earlier trip where ties occur,True
+Removed trip_id excluded from all 5 selected stops (Stop Sequences 6-10),True
+Final Reduced-Service totals equal 38 Morning / 39 Evening trips,True
+Exactly one trip removed from every study hour,True
