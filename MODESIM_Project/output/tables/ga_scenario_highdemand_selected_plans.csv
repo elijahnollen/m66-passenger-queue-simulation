@@ -1,0 +1,3 @@
+Scenario,Period,Technique,Service Plan,Mean Wait,Mean Backlog,Mean Peak Queue,Mean P95 Wait
+High-Demand,Morning,GA,"(8, 12, 10, 8, 5)",3.476655470156446,2.6666666666666665,21.866666666666667,7.519974531024842
+High-Demand,Evening,GA,"(10, 10, 10, 9, 5)",3.500152551026596,1.5666666666666667,11.2,7.7810344647082506

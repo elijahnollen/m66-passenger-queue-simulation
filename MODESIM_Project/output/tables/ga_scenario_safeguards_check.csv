@@ -1,0 +1,5 @@
+Scenario,Period,Plan,Plan Backlog,Reference Backlog,Budget OK,Bounds OK,Backlog Safeguard OK,Passenger Conservation OK
+High-Demand,Morning,"(8, 12, 10, 8, 5)",2.667,2.867,True,True,True,True
+High-Demand,Evening,"(10, 10, 10, 9, 5)",1.567,4.267,True,True,True,True
+Reduced-Service,Morning,"(7, 9, 10, 7, 5)",2.1,2.167,True,True,True,True
+Reduced-Service,Evening,"(10, 7, 8, 8, 6)",1.067,3.233,True,True,True,True
