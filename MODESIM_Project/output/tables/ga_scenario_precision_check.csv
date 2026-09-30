@@ -1,0 +1,9 @@
+Scenario,Period,Metric,Replications,Mean,Half-Width,Required Half-Width,Precision Passed
+High-Demand,Morning,Mean Completed Wait,30,3.4767,0.0307,1.0,True
+High-Demand,Morning,Peak Queue,30,21.8667,0.9027,2.1867,True
+High-Demand,Evening,Mean Completed Wait,30,3.5002,0.0382,1.0,True
+High-Demand,Evening,Peak Queue,30,11.2,0.7558,1.12,True
+Reduced-Service,Morning,Mean Completed Wait,30,3.8893,0.0424,1.0,True
+Reduced-Service,Morning,Peak Queue,30,18.0667,0.7779,1.8067,True
+Reduced-Service,Evening,Mean Completed Wait,30,3.9349,0.0578,1.0,True
+Reduced-Service,Evening,Peak Queue,30,8.8333,0.4812,1.0,True

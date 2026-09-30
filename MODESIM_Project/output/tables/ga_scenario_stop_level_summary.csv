@@ -1,0 +1,21 @@
+Scenario,Period,Stop Sequence,Mean Wait,P95 Wait,Peak Queue,Period-End Queue,Final Backlog
+High-Demand,Evening,6,3.313,6.509,9.133,1.567,1.567
+High-Demand,Evening,7,3.463,6.274,3.0,0.0,0.0
+High-Demand,Evening,8,3.454,7.046,2.533,0.0,0.0
+High-Demand,Evening,9,3.483,7.123,3.133,0.5,0.0
+High-Demand,Evening,10,3.798,9.867,11.0,2.1,0.0
+High-Demand,Morning,6,3.533,7.797,9.667,2.667,2.667
+High-Demand,Morning,7,3.385,7.092,3.2,0.467,0.0
+High-Demand,Morning,8,3.548,7.482,2.133,0.367,0.0
+High-Demand,Morning,9,3.585,7.473,3.5,0.5,0.0
+High-Demand,Morning,10,3.45,7.433,21.867,2.067,0.0
+Reduced-Service,Evening,6,3.748,7.431,8.0,1.067,1.067
+Reduced-Service,Evening,7,3.863,7.206,2.8,0.0,0.0
+Reduced-Service,Evening,8,4.047,7.582,2.3,0.433,0.0
+Reduced-Service,Evening,9,4.051,7.549,2.8,0.267,0.0
+Reduced-Service,Evening,10,4.168,9.264,7.867,0.8,0.0
+Reduced-Service,Morning,6,3.852,8.387,7.467,2.1,2.1
+Reduced-Service,Morning,7,3.76,7.861,2.6,0.333,0.0
+Reduced-Service,Morning,8,3.95,7.515,1.867,0.233,0.0
+Reduced-Service,Morning,9,3.952,7.978,2.967,0.333,0.0
+Reduced-Service,Morning,10,3.904,8.348,18.067,1.467,0.0
