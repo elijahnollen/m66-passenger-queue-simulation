@@ -2,35 +2,29 @@
 
 This repository contains the code, data, outputs, and documentation for the project **Passenger Queue Dynamics and Waiting-Time Simulation for Selected M66 Bus Stops**.
 
-The project uses 2025 MTA Bus Stop Level Ridership data together with an MTA Manhattan GTFS schedule to model passenger queues and bus loading at five selected eastbound M66 stops. A discrete-event simulation is used to evaluate passenger waiting time, queue buildup, final backlog, and bus occupancy.
-
-The project also uses simulation-based service optimization. Genetic Algorithm (GA), Simulated Annealing (SA), and Particle Swarm Optimization (PSO) were compared as candidate optimization techniques during the Midterm phase. GA was selected as the optimization technique for the succeeding project phase.
+The project uses 2025 MTA Bus Stop Level Ridership data together with an MTA Manhattan GTFS schedule to model passenger queues and bus loading at five selected eastbound M66 stops. A discrete-event simulation evaluates passenger waiting time, queue buildup, final backlog, and bus occupancy. A Genetic Algorithm (GA) is then used for simulation-based service optimization.
 
 ## Current Project Status
 
-### Completed
+The current repository includes the completed Pre-Final implementation:
 
 - Data filtering, cleaning, and data-quality checks
 - GTFS service and stop mapping
-- Dataset analysis and visualizations
 - Baseline discrete-event simulation
 - 30-replication baseline experiment
 - Baseline precision checks
-- GA, SA, and PSO optimization screening
-- Selection of GA as the final optimization technique
-- Preliminary comparison between the published GTFS reference service and the selected optimized service plan
-
-### Planned for the Pre-Final Phase
-
-- High-demand scenario with a 40% increase in passenger demand
-- Reduced-service scenario with one scheduled trip removed per study hour
-- Combined high-demand and reduced-service scenario
-- GA optimization under all operating conditions
-- Final scenario comparisons
-- Additional validation and sensitivity analysis
-- Additional simulation tables and visualizations
-
-The committed processed data, tables, figures, and notebook outputs currently represent the completed Midterm-stage work.
+- GA, Simulated Annealing (SA), and Particle Swarm Optimization (PSO) screening
+- Selection of GA as the optimization technique
+- High-Demand scenario
+- Reduced-Service scenario
+- Combined High-Demand and Reduced-Service scenario
+- GA optimization for Baseline, High-Demand, Reduced-Service, and Combined conditions
+- Final-backlog safeguards
+- Replication-level validation
+- Precision checks
+- Paired reference-versus-GA comparisons with 95% confidence intervals
+- Stop-level results
+- Exported scenario and GA tables for review
 
 ## Repository Structure
 
@@ -40,6 +34,8 @@ m66-passenger-queue-simulation/
 │   ├── code/
 │   │   ├── m66_dataset_analysis.ipynb
 │   │   ├── m66_baseline_simulation.ipynb
+│   │   ├── m66_scenario_simulation.ipynb
+│   │   ├── m66_ga_optimization.ipynb
 │   │   └── README.md
 │   │
 │   ├── data/
@@ -49,10 +45,6 @@ m66-passenger-queue-simulation/
 │   │   └── processed/
 │   │
 │   ├── docs/
-│   │   ├── MODESIM_Paper/
-│   │   ├── Screenshots/
-│   │   ├── MTA_BusStopLevelRidership_DataDictionary.pdf
-│   │   └── MTA_BusStopLevelRidership_Overview.pdf
 │   │
 │   └── output/
 │       ├── figures/
@@ -67,7 +59,7 @@ m66-passenger-queue-simulation/
 
 ### `m66_dataset_analysis.ipynb`
 
-Performs the dataset preparation and analysis used by the project, including:
+Prepares and analyzes the project dataset, including:
 
 - M66 ridership filtering
 - Data cleaning and quality checks
@@ -76,109 +68,155 @@ Performs the dataset preparation and analysis used by the project, including:
 - Descriptive statistics
 - Demand and service summaries
 - Dataset-analysis tables and figures
-- Creation of the cleaned dataset used by the simulation
+- Creation of the cleaned selected-stop dataset
 
 ### `m66_baseline_simulation.ipynb`
 
-Contains the current simulation and optimization work, including:
+Builds and evaluates the Baseline model, including:
 
 - Representative passenger-demand preparation
-- GTFS service-plan construction
+- GTFS reference service
 - Passenger-stream generation
 - Discrete-event passenger queue simulation
 - 30-replication baseline experiment
 - Precision checking
-- GA, SA, and PSO optimization screening
-- Optimization-technique selection
-- Preliminary comparison between the GTFS reference service and the selected optimized service plan
+- GA, SA, and PSO screening
+- Baseline GA selection and evaluation
 
-## Data and Output Folders
+### `m66_scenario_simulation.ipynb`
 
-### `MODESIM_Project/data/raw/`
+Evaluates the Baseline and three stress-test conditions using the same simulation engine:
 
-Contains the project input files, including the M66 ridership extract and GTFS source files.
+- Baseline
+- High-Demand
+- Reduced-Service
+- Combined
 
-### `MODESIM_Project/data/processed/`
+The notebook also exports the scenario inputs and results required by the GA notebook, including the High-Demand master passenger streams and Reduced-Service service plan.
 
-Contains cleaned data and reusable simulation files, including:
+### `m66_ga_optimization.ipynb`
 
-- Cleaned selected-stop ridership data
-- Replication seeds
-- Master passenger streams
-- Replication-level baseline results
-- Precision-check results
+Runs the generalized GA across all operating conditions:
 
-### `MODESIM_Project/output/tables/`
-
-Contains summary tables generated for dataset analysis, simulation evaluation, optimization evaluation, and reporting.
-
-### `MODESIM_Project/output/figures/`
-
-Contains generated charts and visualizations used for project analysis and documentation.
+- Baseline reproduction check
+- High-Demand GA
+- Reduced-Service GA
+- Combined GA
+- Fixed service-budget and hourly-bound checks
+- Final-backlog safeguards
+- Selected-plan validation
+- Precision checks
+- Paired 95% confidence intervals
+- Stop-level results
+- Exported reviewer-facing GA tables
 
 ## Environment
 
-The project was developed using **Python 3.13.5**.
+The current notebooks were tested using **Python 3.12**.
 
-Main Python libraries:
+Required Python packages are listed in:
+
+```text
+requirements.txt
+```
+
+The project uses:
 
 - NumPy
 - pandas
 - Matplotlib
 - SciPy
 - JupyterLab
-
-The required libraries are listed in:
-
-```text
-requirements.txt
-```
+- ipykernel
 
 ## Setup
 
-Clone the repository:
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/elijahnollen/m66-passenger-queue-simulation.git
-```
-
-Enter the repository:
-
-```bash
 cd m66-passenger-queue-simulation
 ```
 
-Install the required Python libraries:
+### 2. Create a project virtual environment
 
-```bash
-pip install -r requirements.txt
+On Windows PowerShell:
+
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\Activate.ps1
 ```
+
+If PowerShell blocks the activation script, the environment can still be used directly with:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+### 3. Install the required packages
+
+With the virtual environment activated:
+
+```powershell
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+Using `python -m pip` is recommended so the packages are installed into the same Python environment that will run the notebooks.
+
+### 4. Register the project Jupyter kernel
+
+```powershell
+python -m ipykernel install --user --name m66-passenger-queue-simulation --display-name "M66 Passenger Queue Simulation"
+```
+
+When Jupyter opens, select the **M66 Passenger Queue Simulation** kernel.
 
 ## Running the Notebooks
 
-The notebooks should be executed in this order:
-
-1. `m66_dataset_analysis.ipynb`
-2. `m66_baseline_simulation.ipynb`
-
-The dataset-analysis notebook prepares the cleaned dataset and supporting files used by the simulation notebook.
-
-The notebooks currently use paths relative to:
+The notebooks use paths relative to:
 
 ```text
 MODESIM_Project/code/
 ```
 
-Use that folder as the working directory.
-
 From the repository root:
 
-```bash
-cd MODESIM_Project/code
+```powershell
+cd MODESIM_Project\code
 jupyter lab
 ```
 
-Then open and execute the notebooks in the order listed above.
+Run the notebooks in this order:
+
+1. `m66_dataset_analysis.ipynb`
+2. `m66_baseline_simulation.ipynb`
+3. `m66_scenario_simulation.ipynb`
+4. `m66_ga_optimization.ipynb`
+
+This order matters because later notebooks use processed files generated by earlier notebooks.
+
+### Dependency Flow
+
+```text
+Dataset Analysis
+      ↓
+Baseline Simulation
+      ↓
+Scenario Simulation
+      ↓
+GA Optimization
+```
+
+The Scenario notebook generates files used by the GA notebook, including:
+
+```text
+../data/processed/M66_HighDemand_Master_Passenger_Streams.csv
+../data/processed/M66_HighDemand_Results.csv
+../data/processed/M66_ReducedService_Results.csv
+../data/processed/M66_Combined_Results.csv
+../data/processed/M66_ReducedService_Service_Plan.csv
+```
 
 Generated files are stored under:
 
@@ -188,30 +226,52 @@ Generated files are stored under:
 ../output/figures/
 ```
 
+## Reviewer Quick Check
+
+A reviewer can verify the implementation by running the notebooks in the required order and checking the validation messages.
+
+Important successful checks include:
+
+```text
+All required validation checks passed: True
+All scenarios use the common replication seed pool: True
+Scenario configuration matches executed experiment: True
+Stop-level result structure valid: True
+All expected CSV outputs exported successfully: True
+Generalized GA reproduces the Midterm Baseline result: True
+All stress-scenario GA safeguards passed: True
+All selected-plan validation checks passed: True
+All expected GA outputs exported successfully: True
+```
+
+The GA notebook is the longest-running notebook because it evaluates multiple candidate service plans across matched simulation replications.
+
 ## Reproducibility
 
-The project includes the data, simulation inputs, random seeds, outputs, and documentation needed to support repeatable analysis.
-
-Stored replication seeds are used to reproduce the stochastic passenger-arrival process.
-
-Reusable master passenger streams support matched comparisons between corresponding simulation alternatives. This reduces unnecessary variation caused only by different random passenger arrivals.
-
-Reference and optimized service plans use matched simulation replications whenever applicable.
-
-The repository preserves:
+The repository preserves the inputs and evidence needed to support repeatable analysis:
 
 - Original project input data
 - Cleaned project data
-- GTFS source files
+- Frozen GTFS source files
 - Replication seeds
-- Master passenger streams
+- Baseline master passenger streams
+- High-Demand master passenger streams
 - Replication-level simulation results
-- Summary tables
+- Scenario reference results
+- Optimization results
+- Validation tables
+- Precision tables
+- Paired comparison tables
+- Stop-level results
 - Generated figures
 - Notebook source code
-- Project reports and supporting documentation
+- Project documentation
 
-Generated CSV and PNG files use fixed filenames. Rerunning the notebooks can replace existing files with the same names.
+The stochastic passenger-arrival process uses reproducible seed sequences.
+
+Matched passenger streams are used where applicable so corresponding reference and optimized alternatives can be compared using the same stochastic demand realization.
+
+Generated CSV and PNG files use fixed filenames. Rerunning the notebooks can replace existing generated files with the same names.
 
 ## Simulation Scope
 
@@ -220,39 +280,46 @@ The simulation represents five consecutive eastbound M66 stops in Manhattan duri
 - **Morning:** 6:00 AM to 11:00 AM
 - **Evening:** 3:00 PM to 8:00 PM
 
-The simulation uses published GTFS bus times as the reference service schedule.
+The reference condition uses published GTFS bus times.
 
-Representative passenger demand is derived from cleaned historical MTA Bus Stop Level Ridership data. Passenger arrival times are generated within each study hour.
+Representative passenger demand is derived from cleaned historical MTA Bus Stop Level Ridership data. Individual passenger arrival times are generated within each study hour.
 
 Passengers wait using a first-in, first-out queue.
 
-A modeled bus capacity of **60 passengers** is used as a project assumption.
+A modeled bus capacity of **60 passengers** is used.
 
 Passenger generation stops at the study-period boundary. Eligible buses are allowed to complete their remaining modeled stop events. Passengers still waiting after the final eligible bus are recorded as the **final backlog**.
 
-The model does not attempt to reconstruct actual historical traffic conditions, bus bunching, cancellations, or observed dwell-time variation.
+The model does not attempt to reconstruct actual historical traffic conditions, bus bunching, cancellations, early running, or observed dwell-time variation.
 
 ## Experimental Design
 
-The project defines one baseline condition and three stress-test conditions.
-
 ### Baseline
 
-Representative passenger demand with the published GTFS reference service.
+Representative selected-stop passenger demand with the published GTFS reference service.
 
-### High-Demand Scenario
+### High-Demand
 
-Passenger demand is increased uniformly by 40% while the reference service remains unchanged.
+Selected-stop boarding demand is increased by 40% while the Baseline reference service is retained.
 
-### Reduced-Service Scenario
+### Reduced-Service
 
-Representative passenger demand is retained while one scheduled trip is removed from every study hour.
+Baseline selected-stop passenger demand is retained while one reference trip is removed from every study hour.
 
-### Combined Scenario
+The Reduced-Service reference has:
 
-Passenger demand is increased by 40% while one scheduled trip is also removed from every study hour.
+- 38 Morning trips
+- 39 Evening trips
 
-The three stress-test scenarios are planned for the Pre-Final implementation phase.
+For GA optimization, the fixed Reduced-Service period budget is redistributed across the five study hours using an hourly search range of **4 to 12 trips**.
+
+### Combined
+
+The High-Demand passenger streams are evaluated together with the Reduced-Service service condition.
+
+The 40% increase applies to boarding demand at the five modeled stops. Upstream occupancy and alighting demand are not multiplied by 1.40.
+
+The Combined GA uses the same Reduced-Service period budgets and the same **4 to 12 trips per hour** search range.
 
 ## AI Optimization
 
@@ -264,19 +331,15 @@ Three candidate optimization techniques were evaluated during the Midterm phase:
 - Simulated Annealing
 - Particle Swarm Optimization
 
-Each technique generated candidate hourly service allocations that were evaluated using the passenger-queue simulation.
+GA was selected as the optimization technique for the succeeding project phase.
 
-GA was selected as the final optimization technique based on the completed Midterm screening experiment.
+For each scenario, the GA redistributes the scenario-specific fixed service budget across the five study hours. Candidate schedules are evaluated through the passenger-queue simulation.
 
-The optimizer changes the hourly distribution of the available service while keeping the total service budget fixed for the corresponding operating condition.
-
-Candidate optimized service plans are evaluated through simulation before they are accepted.
-
-A final-backlog feasibility safeguard is used so that a service plan cannot be considered better only because it lowers completed passenger waiting time while leaving more passengers unserved.
+A final-backlog safeguard is used so a plan cannot be selected only because it lowers completed-passenger waiting time while leaving more passengers unserved than the corresponding reference service.
 
 ## Main Evaluation Metrics
 
-The simulation uses the following performance measures:
+The simulation reports:
 
 - Mean completed passenger waiting time
 - 95th percentile completed passenger waiting time
@@ -287,7 +350,7 @@ The simulation uses the following performance measures:
 - Maximum bus occupancy
 - Passenger conservation
 
-Paired comparisons and 95% confidence intervals are used when comparing corresponding reference and optimized simulation results.
+Paired comparisons and 95% confidence intervals are used for corresponding reference-versus-GA results.
 
 ## Data Sources
 
@@ -296,22 +359,14 @@ The project uses:
 - **MTA Bus Stop Level Ridership: Beginning 2024**, filtered to 2025 eastbound M66 records
 - **MTA static Manhattan GTFS data**, used as the scheduled bus-service reference
 
-The ridership dataset provides historical passenger activity, while the GTFS feed provides the scheduled service used by the simulation.
-
-The ridership records and GTFS schedule represent different time periods. Because of this, the project is treated as a **controlled simulation and sensitivity study**, not as a reconstruction of one historical M66 operating day.
+The ridership records and GTFS schedule represent different time periods. The project is therefore treated as a controlled simulation and sensitivity study rather than a reconstruction of one historical operating day.
 
 ## Documentation
 
-Supporting project documentation is stored in:
+Supporting project documentation is stored under:
 
 ```text
 MODESIM_Project/docs/
 ```
 
-This includes:
-
-- Initial project system representation
-- Midterm project report
-- MTA dataset documentation
-- Data-source and filtering screenshots
-- Supporting project materials
+This includes the project reports, dataset documentation, screenshots, and supporting materials.

@@ -1,4 +1,5 @@
-Scenario,Replications Used,Passenger Conservation Passed,Non-Negative Waiting Time Passed,"Bus Occupancy In [0, 60] Passed",Minimum Observed Waiting Time (min),Minimum Observed Bus Occupancy,Maximum Observed Bus Occupancy
-Baseline,30,True,True,True,0.0004494464890285599,0,33
-High-Demand,30,True,True,True,0.00023581660514082614,0,45
-Reduced-Service,30,True,True,True,0.0004494464890285599,0,52
+Scenario,Replications Used,Passenger Conservation,Waiting Time Valid,Bus Occupancy Valid,Precision Passed,Maximum Observed Bus Occupancy,Modeled Bus Capacity,All Required Checks Passed
+Baseline,30,True,True,True,True,33,60,True
+High-Demand,30,True,True,True,True,45,60,True
+Reduced-Service,30,True,True,True,True,52,60,True
+Combined,30,True,True,True,True,60,60,True

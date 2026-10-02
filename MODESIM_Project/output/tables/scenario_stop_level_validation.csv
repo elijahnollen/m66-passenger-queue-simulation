@@ -1,0 +1,5 @@
+Check,Passed
+All scenario-period-stop combinations are present,True
+Stop-level replication counts match each scenario's retained replications,True
+Every stop sequence has a corresponding stop name,True
+Stop Sequences 6 through 10 are all represented,True

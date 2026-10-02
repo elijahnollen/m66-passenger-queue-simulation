@@ -1,0 +1,33 @@
+Category,File,Directory
+Processed Data,M66_HighDemand_Demand_Table.csv,data/processed
+Processed Data,M66_HighDemand_Additional_Demand.csv,data/processed
+Processed Data,M66_HighDemand_Master_Passenger_Streams.csv,data/processed
+Processed Data,M66_ReducedService_Service_Plan.csv,data/processed
+Processed Data,M66_ReducedService_Removed_Trips.csv,data/processed
+Processed Data,M66_HighDemand_Results.csv,data/processed
+Processed Data,M66_ReducedService_Results.csv,data/processed
+Processed Data,M66_Combined_Results.csv,data/processed
+Processed Data,M66_HighDemand_StopLevel_Results.csv,data/processed
+Processed Data,M66_ReducedService_StopLevel_Results.csv,data/processed
+Processed Data,M66_Combined_StopLevel_Results.csv,data/processed
+Processed Data,M66_HighDemand_Precision_Check.csv,data/processed
+Processed Data,M66_ReducedService_Precision_Check.csv,data/processed
+Processed Data,M66_Combined_Precision_Check.csv,data/processed
+Table,scenario_configuration_parameters.csv,output/tables
+Table,scenario_hourly_trip_counts.csv,output/tables
+Table,scenario_reducedservice_removal_validation.csv,output/tables
+Table,scenario_validation_summary.csv,output/tables
+Table,scenario_matched_seed_validation.csv,output/tables
+Table,scenario_passenger_demand_validation.csv,output/tables
+Table,scenario_configuration_validation.csv,output/tables
+Table,scenario_all_replications.csv,output/tables
+Table,scenario_comparison_summary.csv,output/tables
+Table,scenario_descriptive_differences_from_baseline.csv,output/tables
+Table,scenario_precision_summary.csv,output/tables
+Table,scenario_stop_level_all_replications.csv,output/tables
+Table,scenario_stop_level_summary.csv,output/tables
+Table,scenario_highest_pressure_stops.csv,output/tables
+Table,scenario_stop_level_validation.csv,output/tables
+Figure,scenario_comparison_summary.png,output/figures
+Figure,stop_level_peak_queue_morning.png,output/figures
+Figure,stop_level_peak_queue_evening.png,output/figures

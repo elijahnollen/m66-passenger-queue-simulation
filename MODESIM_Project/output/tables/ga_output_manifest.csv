@@ -1,0 +1,19 @@
+File,Directory,Purpose
+ga_core_baseline_runs.csv,output/tables,Baseline reproduction evidence
+ga_core_baseline_selected_plans.csv,output/tables,Baseline reproduction evidence
+ga_core_baseline_reproduction_check.csv,output/tables,Baseline reproduction evidence
+ga_scenario_highdemand_runs.csv,output/tables,GA scenario result or validation evidence
+ga_scenario_highdemand_selected_plans.csv,output/tables,GA scenario result or validation evidence
+ga_scenario_reducedservice_runs.csv,output/tables,GA scenario result or validation evidence
+ga_scenario_reducedservice_selected_plans.csv,output/tables,GA scenario result or validation evidence
+ga_scenario_combined_runs.csv,output/tables,GA scenario result or validation evidence
+ga_scenario_combined_selected_plans.csv,output/tables,GA scenario result or validation evidence
+ga_scenario_selected_plan_replications.csv,output/tables,GA scenario result or validation evidence
+ga_scenario_stop_level_results.csv,output/tables,GA scenario result or validation evidence
+ga_scenario_stop_level_summary.csv,output/tables,GA scenario result or validation evidence
+ga_scenario_highest_pressure_stops.csv,output/tables,GA scenario result or validation evidence
+ga_scenario_validation_summary.csv,output/tables,GA scenario result or validation evidence
+ga_scenario_precision_check.csv,output/tables,GA scenario result or validation evidence
+ga_scenario_paired_reference_vs_ga.csv,output/tables,GA scenario result or validation evidence
+ga_scenario_safeguards_check.csv,output/tables,GA scenario result or validation evidence
+ga_scenario_configuration.csv,output/tables,GA scenario result or validation evidence

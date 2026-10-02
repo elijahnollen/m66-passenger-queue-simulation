@@ -1,4 +1,5 @@
-Scenario,Demand Multiplier,Passenger Total per Replication,Trips Removed per Hour,Morning Service Budget (trips),Evening Service Budget (trips),Total Trips,Replications Used,Master Seed,Notes
-Baseline,1.0,776,0,43,44,87,30,2026,Reference condition. Unmodified from m66_baseline_simulation.ipynb.
-High-Demand,1.4,1083,0,43,44,87,30,2026,"Baseline passengers preserved exactly; only the additional 307 passengers/replication needed to reach +40% are newly generated (Section 10). Reference GTFS service, initial occupancy, and alighting targets unchanged from Baseline."
-Reduced-Service,1.0,776,1,38,39,77,30,2026,"One trip removed per study hour using the deterministic closest-to-midpoint rule, earlier trip on ties (Section 5); passenger demand unchanged from Baseline; initial occupancy and alighting recomputed for the remaining trips. GA note: the 38 Morning / 39 Evening totals are the service BUDGET for the period — the GA may redistribute them freely across the 5 hours in that period rather than being forced to keep exactly one fewer trip in every individual hour (Section 22)."
+Scenario,Demand Condition,Demand Multiplier,Passenger Total per Replication,Service Condition,Trips Removed per Hour,Morning Trip Budget,Evening Trip Budget,Replications Used,Modeled Bus Capacity,Total Trip Budget
+Baseline,Baseline selected-stop demand,1.0,776,Published GTFS reference,0,43,44,30,60,87
+High-Demand,+40% selected-stop demand,1.4,1083,Published GTFS reference,0,43,44,30,60,87
+Reduced-Service,Baseline selected-stop demand,1.0,776,Reduced-Service reference,1,38,39,30,60,77
+Combined,+40% selected-stop demand,1.4,1083,Reduced-Service reference,1,38,39,30,60,77

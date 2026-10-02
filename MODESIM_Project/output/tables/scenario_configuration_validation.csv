@@ -1,0 +1,6 @@
+Check,Passed
+Baseline passenger total,True
+High-Demand passenger total,True
+Reduced-Service trip budget,True
+Combined trip budget,True
+Replication counts match executed results,True
