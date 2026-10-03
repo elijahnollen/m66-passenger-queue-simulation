@@ -17,3 +17,7 @@ ga_scenario_precision_check.csv,output/tables,GA scenario result or validation e
 ga_scenario_paired_reference_vs_ga.csv,output/tables,GA scenario result or validation evidence
 ga_scenario_safeguards_check.csv,output/tables,GA scenario result or validation evidence
 ga_scenario_configuration.csv,output/tables,GA scenario result or validation evidence
+ga_reference_vs_optimized_mean_wait.png,output/figures,Reviewer-facing reference-versus-GA comparison figure
+ga_reference_vs_optimized_p95_wait.png,output/figures,Reviewer-facing reference-versus-GA comparison figure
+ga_reference_vs_optimized_peak_queue.png,output/figures,Reviewer-facing reference-versus-GA comparison figure
+ga_reference_vs_optimized_final_backlog.png,output/figures,Reviewer-facing reference-versus-GA comparison figure
