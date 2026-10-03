@@ -1,7 +1,0 @@
-Scenario,Period,Mean Completed Wait,P95 Completed Wait,Peak Queue,Period-End Queue,Final Backlog,Mean Bus Occupancy
-Baseline,Evening,3.651,7.823,9.867,3.233,3.233,12.217
-Baseline,Morning,3.657,9.081,17.267,3.6,2.167,15.922
-High-Demand,Evening,3.641,7.832,13.9,4.267,4.267,13.829
-High-Demand,Morning,3.663,9.038,23.367,5.033,2.867,17.924
-Reduced-Service,Evening,4.368,11.917,10.267,3.233,3.233,13.885
-Reduced-Service,Morning,4.85,14.386,24.5,3.6,2.167,17.701

@@ -1,5 +1,0 @@
-Scenario,Period,Reference Service Mean Wait,GA Optimized Mean Wait,Change (min),Percent Change
-High-Demand,Morning,3.6627,3.4767,-0.186,-5.08
-High-Demand,Evening,3.6414,3.5002,-0.1412,-3.88
-Reduced-Service,Morning,4.8501,3.8893,-0.9608,-19.81
-Reduced-Service,Evening,4.3683,3.9349,-0.4334,-9.92
