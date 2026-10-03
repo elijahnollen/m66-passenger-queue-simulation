@@ -505,9 +505,9 @@ The Scenario and GA output manifests identify the current generated review files
 
 ## 26. Environment and Reproducibility
 
-The repository targets Python 3.12.
+The complete four-notebook workflow was validated with Python 3.12.5.
 
-Required top-level packages are listed in the repository root `requirements.txt`.
+Required top-level packages and their tested versions are pinned in the repository root `requirements.txt`.
 
 The current dependency set includes:
 

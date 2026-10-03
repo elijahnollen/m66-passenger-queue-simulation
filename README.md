@@ -86,7 +86,7 @@ Reproduces the Baseline GA result and applies the selected GA to all four operat
 
 ## Environment
 
-The project targets **Python 3.12**.
+The complete four-notebook workflow was validated with **Python 3.12.5**.
 
 Required top-level packages are listed in:
 
@@ -96,12 +96,12 @@ requirements.txt
 
 The current dependency set includes:
 
-- NumPy
-- pandas
-- Matplotlib
-- SciPy
-- JupyterLab
-- ipykernel
+- NumPy 2.5.3
+- pandas 3.0.6
+- Matplotlib 3.11.2
+- SciPy 1.18.1
+- JupyterLab 4.6.4
+- ipykernel 7.4.0
 
 ## Setup
 
