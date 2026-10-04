@@ -143,7 +143,7 @@ After setup, run `m66_dataset_analysis.ipynb` and then `m66_baseline_simulation.
 
 ## Measured execution times
 
-The following values are from one successful sequential `run_all.py` execution. The environment used Python 3.12.14 and the pinned model packages on Linux, with an AMD EPYC 9V74 80-Core Processor processor. The execution container had an 8 GiB memory limit and a CPU quota equivalent to eight cores. Package installation and file downloads are excluded. Other machines and interactive Jupyter runs can take different amounts of time.
+The following values are from one successful sequential `run_all.py` execution. The environment used Python 3.12.14. Package installation and file downloads are excluded. Other machines and interactive Jupyter runs can take different amounts of time.
 
 | Stage | Measured seconds | Approximate minutes |
 | --- | ---: | ---: |
