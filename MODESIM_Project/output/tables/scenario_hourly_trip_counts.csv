@@ -1,0 +1,12 @@
+Hour,Period,Baseline Trips,Reduced-Service Trips,Trips Removed
+6,Morning,5,4,1
+7,Morning,12,11,1
+8,Morning,12,11,1
+9,Morning,8,7,1
+10,Morning,6,5,1
+15,Evening,8,7,1
+16,Evening,12,11,1
+17,Evening,11,10,1
+18,Evening,8,7,1
+19,Evening,5,4,1
+Total,All,87,77,10

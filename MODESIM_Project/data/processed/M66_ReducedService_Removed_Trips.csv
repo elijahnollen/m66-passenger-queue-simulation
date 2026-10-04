@@ -1,0 +1,11 @@
+Hour,Period,Baseline Trips,Hour Midpoint (minutes),Removed trip_id,Removed Stop 6 Arrival Time,Distance to Midpoint (minutes),Tie at Minimum Distance
+6,Morning,5,390,MQ_C6-Weekday-039100_M66_502,06:34:54,4.9,False
+7,Morning,12,450,MQ_C6-Weekday-044500_M66_509,07:29:54,0.1,False
+8,Morning,12,510,MQ_C6-Weekday-050600_M66_509,08:31:37,1.617,False
+9,Morning,8,570,MQ_C6-Weekday-056800_M66_507,09:33:37,3.617,False
+10,Morning,6,630,MQ_C6-Weekday-062800_M66_513,10:33:48,3.8,False
+15,Evening,8,930,MQ_C6-Weekday-092300_M66_518,15:28:48,1.2,False
+16,Evening,12,990,MQ_C6-Weekday-098300_M66_516,16:28:48,1.2,False
+17,Evening,11,1050,MQ_C6-Weekday-104300_M66_515,17:28:37,1.383,False
+18,Evening,8,1110,MQ_C6-Weekday-110200_M66_519,18:27:37,2.383,False
+19,Evening,5,1170,MQ_C6-Weekday-116400_M66_522,19:30:16,0.267,False

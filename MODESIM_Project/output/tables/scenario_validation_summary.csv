@@ -1,0 +1,5 @@
+Scenario,Replications Used,Passenger Conservation,Waiting Time Valid,Bus Occupancy Valid,Precision Passed,Maximum Observed Bus Occupancy,Modeled Bus Capacity,All Required Checks Passed
+Baseline,30,True,True,True,True,33,60,True
+High-Demand,30,True,True,True,True,45,60,True
+Reduced-Service,30,True,True,True,True,52,60,True
+Combined,30,True,True,True,True,60,60,True

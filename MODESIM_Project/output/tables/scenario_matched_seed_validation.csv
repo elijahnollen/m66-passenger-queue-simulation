@@ -1,0 +1,5 @@
+Scenario,Replications Used,Matched Common Seed Pool
+Baseline,30,True
+High-Demand,30,True
+Reduced-Service,30,True
+Combined,30,True

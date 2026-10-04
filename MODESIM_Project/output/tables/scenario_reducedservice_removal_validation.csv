@@ -1,0 +1,6 @@
+Check,Passed
+Removed trip is closest to the hour midpoint,True
+Earlier scheduled trip is selected when a midpoint tie occurs,True
+Removed trip IDs are excluded from all five modeled stops,True
+Exactly one trip is removed from every study hour,True
+Reduced-Service period trip budgets are preserved,True

@@ -1,10 +1,7 @@
-# Code
+# Project code
 
-This folder contains the Jupyter notebooks used for the M66 passenger queue simulation project.
+Start with the [project README](../../README.md) for the file guide, setup, notebook order, and commands.
 
-Run the notebooks in this order:
+Use this folder as the notebooks' working directory and keep the shared Python modules beside them. Choose the **M66 Passenger Queue Simulation** kernel and save each notebook after its run finishes.
 
-1. `m66_dataset_analysis.ipynb`
-2. `m66_baseline_simulation.ipynb`
-
-For setup instructions, project structure, input and output locations, experimental design, and reproducibility information, see the repository root `README.md`.
+Read the [technical documentation](../docs/TECHNICAL_DOCUMENTATION.md) for the simulation rules, experiment settings, checks, and limits.

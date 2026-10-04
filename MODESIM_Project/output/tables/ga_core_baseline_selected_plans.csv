@@ -1,0 +1,3 @@
+Scenario,Period,Technique,Service Plan,Mean Wait,Mean Backlog,Mean Peak Queue,Mean P95 Wait,Mean Period-End Queue,Mean Bus Occupancy,Maximum Bus Occupancy,Passed Final Backlog Safeguard
+Baseline,Morning,GA,"(8, 9, 12, 8, 6)",3.4691860519895017,1.8333333333333333,17.466666666666665,7.271909343799776,2.933333333333333,15.720155038759687,36,True
+Baseline,Evening,GA,"(10, 10, 10, 8, 6)",3.488476027076788,1.0666666666666667,8.466666666666667,7.222116669783009,2.566666666666667,12.2530303030303,23,True

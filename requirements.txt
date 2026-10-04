@@ -1,5 +1,5 @@
-numpy
-pandas
-matplotlib
-scipy
-jupyterlab
+#pinned dependencies for the simulation
+numpy==2.3.5
+pandas==2.2.3
+matplotlib==3.10.8
+scipy==1.17.0

@@ -1,0 +1,5 @@
+Scenario,Passengers per Replication,Consistent Across Replications
+Baseline,776,True
+High-Demand,1083,True
+Reduced-Service,776,True
+Combined,1083,True

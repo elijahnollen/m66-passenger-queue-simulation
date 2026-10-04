@@ -1,0 +1,4 @@
+#optional interactive notebook tools, separate from the tested model dependencies
+-r requirements.txt
+jupyterlab>=4,<5
+ipykernel>=6,<8
