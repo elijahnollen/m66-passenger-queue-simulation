@@ -34,6 +34,14 @@ The engine records passenger waits, bus loads, and queue lengths after each even
 
 The period-end snapshot includes bus events exactly at 11:00 or 20:00. It is recorded before later eligible downstream events. Final backlog is the queue left after the final eligible event. These are different measures.
 
+### Last-bus diagnostics
+
+Each stop result records `Last Eligible Bus Time` in minutes from midnight, `Arrivals At Or After Last Bus`, and `Earlier Arrivals Still Unserved`. The last arrival is taken from the eligible bus events at that stop, including downstream events after the official period boundary. An exact-time passenger arrival misses that bus because bus events have priority. If a stop has no bus event, its last-bus time is missing and all its arrivals are counted as unserved with no remaining service.
+
+The two passenger components must add to the final backlog. An earlier passenger still unserved is distinct from a passenger who ever missed a full bus: the latter can board a later bus. The diagnostics do not count every temporary capacity denial or measure unmet real-world demand.
+
+The independent test exports `review_last_bus_diagnostics.csv` with 4,800 rows: four conditions, two periods, four service methods, 30 replications, and five stops. `review_last_bus_summary.csv` contains 160 stop-method summaries with last-bus times and mean backlog components. These are reporting outputs and do not change the objective, plan selection, or event rules.
+
 ## Metrics
 
 | Metric | Meaning |
@@ -90,6 +98,8 @@ The larger set used to choose a final plan is a selection set, including tables 
 `run_all.py` runs the dataset, baseline, scenario, and GA notebooks in fresh namespaces. It saves each executed notebook only after every code cell in that notebook succeeds. An error stops the run. After the notebooks finish, it calls `plot_results.py` to draw the independent-test figures from the saved tables.
 
 The script runner captures plain-text outputs and saves figures separately. Use JupyterLab to save notebooks with displayed tables and plots for HTML and PDF export. A run writes to the existing result paths, so preserve any earlier outputs you still need before rerunning. If a run fails, its output folders can contain a mix of earlier and partial results. Resolve the error and complete the notebooks in order before using those results together.
+
+The runner measures wall-clock time with `perf_counter` for each notebook, plotting, and the full sequential execution. It removes any previous `execution_runtime.csv` before starting and saves a new timing record only after all stages succeed. The table contains seconds, minutes, measurement time, package versions, host details, and a SHA256 fingerprint of code cells and Python modules. Notebook outputs are excluded from that fingerprint. Installation and download time are excluded from the measurements. Runtime depends on the machine, resource limits, and other activity; use the measured example in the root README as an estimate rather than a guarantee.
 
 The GA notebook rebuilds scenario references from the same frozen raw and clean inputs. It does not depend on loading every exported scenario CSV. Files with the `review_` prefix belong to the independent-test experiment and contain its plans, seeds, replication results, comparisons, and queue traces.
 

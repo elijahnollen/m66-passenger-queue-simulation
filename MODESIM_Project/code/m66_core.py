@@ -524,11 +524,27 @@ def run_service_simulation(
             else pd.Series(dtype=float)
         )
 
+        #check the final bus at this stop, since each stop has its own cutoff
+        stop_bus_times = bus_history_df.loc[bus_history_df["Stop Sequence"] == stop, "Time"]
+        last_bus_time = float(stop_bus_times.max()) if len(stop_bus_times) else np.nan
+        stop_arrivals = queue_history_df.loc[
+            (queue_history_df["Stop Sequence"] == stop)
+            & (queue_history_df["Event"] == "passenger_arrival"), "Time"
+        ]
+        #a bus goes first at a tied time, so a passenger arriving then also misses it
+        late_arrivals = int((stop_arrivals >= last_bus_time).sum()) if np.isfinite(last_bus_time) else len(stop_arrivals)
+        earlier_unserved = int(final_backlog[stop] - late_arrivals)
+        if earlier_unserved < 0:
+            raise AssertionError("Last-bus counts exceed the final backlog.")
+
         stop_records.append({
             "Replication": int(replication),
             "Seed": int(seed),
             "Period": period,
             "Stop Sequence": stop,
+            "Last Eligible Bus Time": last_bus_time,
+            "Arrivals At Or After Last Bus": late_arrivals,
+            "Earlier Arrivals Still Unserved": earlier_unserved,
             "Completed Passengers": int(
                 len(stop_waits)
             ),

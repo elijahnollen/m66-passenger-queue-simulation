@@ -135,6 +135,27 @@ python MODESIM_Project/code/plot_results.py
 
 A run overwrites existing result filenames. Keep a copy of results you need before rerunning. If a run fails, fix the error and complete the notebook sequence before using the output folders as one result set.
 
+## Reviewer access and a baseline check
+
+This repository is private. Reviewers need repository access or a complete downloaded project folder before using these instructions. A download must include the frozen data, shared modules, notebooks, requirements files, and saved outputs.
+
+After setup, run `m66_dataset_analysis.ipynb` and then `m66_baseline_simulation.ipynb`, restarting the kernel before each. Check that the baseline passenger totals are 500 for Morning and 276 for Evening and that conservation, waiting-time, and occupancy checks pass. This sequence checks baseline behavior; it does not regenerate the independent-test results. Run all four notebooks for those results.
+
+## Measured execution times
+
+The following values are from one successful sequential `run_all.py` execution. The environment used Python 3.12.14 and the pinned model packages on Linux, with an AMD EPYC 9V74 80-Core Processor processor. The execution container had an 8 GiB memory limit and a CPU quota equivalent to eight cores. Package installation and file downloads are excluded. Other machines and interactive Jupyter runs can take different amounts of time.
+
+| Stage | Measured seconds | Approximate minutes |
+| --- | ---: | ---: |
+| `m66_dataset_analysis.ipynb` | 2.9 | 0.05 |
+| `m66_baseline_simulation.ipynb` | 41.1 | 0.69 |
+| `m66_scenario_simulation.ipynb` | 8.4 | 0.14 |
+| `m66_ga_optimization.ipynb` | 348.2 | 5.80 |
+| `plot_results.py` | 1.2 | 0.02 |
+| `Full sequential run` | 401.8 | 6.70 |
+
+The values are estimates for planning a run, not guaranteed limits. `output/tables/execution_runtime.csv` records the full measurement, environment, and code fingerprint. `run_all.py` measures each future complete execution and replaces the timing table only after success. Its full-run time includes the notebook stages and figure generation. Running the first two notebooks takes about 0.73 minutes in this measured environment.
+
 ## Find the results
 
 All table names below are inside `MODESIM_Project/output/tables/`.
@@ -153,6 +174,8 @@ All table names below are inside `MODESIM_Project/output/tables/`.
 | `review_holdout_stop_comparisons.csv` | Stop-level waiting and queue tradeoffs |
 | `review_holdout_stress_vs_baseline.csv` | Stress conditions compared with baseline |
 | `review_reference_queue_*.csv` | Reference queue traces used in the comparison figures |
+| `review_last_bus_diagnostics.csv`, `review_last_bus_summary.csv` | Stop-specific final eligible bus times and the two components of final backlog |
+| `execution_runtime.csv` | Measured notebook and full-run times, with environment details |
 
 The `review_` prefix names the independent-test experiment. Read waiting time together with backlog and stop-level results. Lower mean waiting time does not mean that every passenger or stop benefits. Use the technical documentation to interpret comparisons and confidence intervals.
 

@@ -1,12 +1,18 @@
 #run from any folder with python path/to/MODESIM_Project/code/run_all.py
 import ast
 import contextlib
+import csv
+import hashlib
+import importlib.metadata
 import io
 import json
 import os
+import platform
 import subprocess
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
+from time import perf_counter
 
 os.environ.setdefault("MPLBACKEND", "Agg")
 CODE_DIR = Path(__file__).resolve().parent
@@ -53,11 +59,56 @@ def run_notebook(path):
 def main():
     os.chdir(CODE_DIR)
     sys.path.insert(0, str(CODE_DIR))
+    tables = CODE_DIR.parent / "output" / "tables"
+    tables.mkdir(parents=True, exist_ok=True)
+    timing_path = tables / "execution_runtime.csv"
+    #clear the previous timing record so a failed run cannot look complete
+    timing_path.unlink(missing_ok=True)
+    measured = []
+    started = perf_counter()
     #each notebook checks its inputs and model rules while it runs
     for name in NOTEBOOKS:
+        stage_started = perf_counter()
         run_notebook(CODE_DIR / name)
+        measured.append((name, perf_counter() - stage_started))
     #draw the extra comparison figures from the tables saved by the ga notebook
+    stage_started = perf_counter()
     subprocess.run([sys.executable, str(CODE_DIR / "plot_results.py")], check=True)
+    measured.append(("plot_results.py", perf_counter() - stage_started))
+    measured.append(("Full sequential run", perf_counter() - started))
+    #record the machine with the measured times rather than promise a fixed runtime
+    cpu = platform.processor()
+    if Path("/proc/cpuinfo").exists():
+        cpu = next((line.split(":", 1)[1].strip() for line in Path("/proc/cpuinfo").read_text().splitlines() if line.startswith("model name")), cpu)
+    memory_gib = None
+    try:
+        memory_gib = round(os.sysconf("SC_PHYS_PAGES") * os.sysconf("SC_PAGE_SIZE") / 1024 ** 3, 2)
+    except (ValueError, OSError, AttributeError):
+        pass
+    #hash code cells and modules without notebook outputs, which change during a run
+    digest = hashlib.sha256()
+    for path in sorted(CODE_DIR.iterdir()):
+        if path.suffix == ".py":
+            digest.update(path.name.encode()); digest.update(path.read_bytes())
+        elif path.suffix == ".ipynb":
+            notebook = json.loads(path.read_text(encoding="utf-8"))
+            digest.update(path.name.encode())
+            for cell in notebook["cells"]:
+                if cell["cell_type"] == "code":
+                    digest.update("".join(cell["source"]).encode())
+    metadata = {
+        "Measured UTC": datetime.now(timezone.utc).isoformat(),
+        "Python": platform.python_version(), "Platform": platform.platform(),
+        "CPU": cpu, "Logical CPUs": os.cpu_count(), "Host Memory GiB": memory_gib,
+        "Packages": "; ".join(f"{name}={importlib.metadata.version(name)}" for name in ["numpy", "pandas", "scipy", "matplotlib"]),
+        "Code SHA256": digest.hexdigest()
+    }
+    with timing_path.open("w", newline="", encoding="utf-8") as stream:
+        writer = csv.DictWriter(stream, fieldnames=["Stage", "Seconds", "Minutes", *metadata])
+        writer.writeheader()
+        for name, seconds in measured:
+            writer.writerow({"Stage": name, "Seconds": round(seconds, 6), "Minutes": round(seconds / 60, 6), **metadata})
+            print(f"{name}: {seconds:.1f} seconds", flush=True)
     print("All four notebooks completed and comparison figures were saved.")
 
 

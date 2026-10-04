@@ -128,6 +128,34 @@ def run_review_evaluation(contexts, selected_plans, baseline_demand, additional_
         "review_holdout_stress_vs_baseline.csv": pd.DataFrame(stress_rows),
         "review_control_plans.csv": pd.DataFrame(rule_rows)
     }
+    #save one row per stop and replication for every service method
+    diagnostic_columns = [
+        "Scenario", "Period", "Method", "Replication", "Seed", "Stop Sequence",
+        "Last Eligible Bus Time", "Arrivals At Or After Last Bus",
+        "Earlier Arrivals Still Unserved", "Final Backlog", "Period-End Queue"
+    ]
+    diagnostics = pd.concat([
+        exports["review_holdout_reference_stops.csv"].assign(Method="Published Reference"),
+        exports["review_holdout_candidate_stops.csv"]
+    ], ignore_index=True)[diagnostic_columns]
+    if len(diagnostics) != 4 * 2 * 4 * 30 * 5:
+        raise AssertionError("Last-bus diagnostics are missing a service or stop.")
+    if not (diagnostics["Arrivals At Or After Last Bus"] + diagnostics["Earlier Arrivals Still Unserved"] == diagnostics["Final Backlog"]).all():
+        raise AssertionError("Last-bus backlog counts do not add up.")
+    exports["review_last_bus_diagnostics.csv"] = diagnostics
+    #timing stays fixed within a plan, while passenger counts vary by replication
+    summary = diagnostics.groupby(["Scenario", "Period", "Method", "Stop Sequence"], sort=False).agg(
+        Replications=("Replication", "nunique"),
+        Last_Bus_Minutes=("Last Eligible Bus Time", "first"),
+        Mean_Late_Arrivals=("Arrivals At Or After Last Bus", "mean"),
+        Mean_Earlier_Unserved=("Earlier Arrivals Still Unserved", "mean"),
+        Mean_Final_Backlog=("Final Backlog", "mean"),
+        Mean_Period_End_Queue=("Period-End Queue", "mean")
+    ).reset_index()
+    summary.columns = ["Scenario", "Period", "Method", "Stop Sequence", "Replications",
+                       "Last Eligible Bus Time", "Mean Arrivals At Or After Last Bus",
+                       "Mean Earlier Arrivals Still Unserved", "Mean Final Backlog", "Mean Period-End Queue"]
+    exports["review_last_bus_summary.csv"] = summary
     for filename, frame in exports.items():
         frame.to_csv(output_dir / filename, index=False)
     return exports["review_holdout_paired_comparisons.csv"]
