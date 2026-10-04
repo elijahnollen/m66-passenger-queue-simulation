@@ -26,7 +26,7 @@ The average occupancy estimate shown in an hourly summary is not a single load a
 
 ## Shared event engine
 
-`m66_core.py` is the only event-engine implementation. The baseline notebook wraps its five-result return into the historical four-result interface. The scenario and GA notebooks also use the stop-level result.
+`m66_core.py` is the only event-engine implementation. The baseline notebook wraps its five-result return into a four-result interface. The scenario and GA notebooks also use the stop-level result.
 
 Each stop has a FIFO passenger queue. An event contains its time, priority, event type, stop sequence, and passenger or trip ID. Bus events have priority 0, and passenger events have priority 1. A bus is processed first at an exact-time tie. Alighting happens before boarding. Boarding uses the available capacity and takes passengers from the front of the queue.
 
@@ -64,9 +64,9 @@ The decision is a five-element vector of whole hourly trip counts. Its sum equal
 
 Candidate buses are placed at equal midpoint intervals within each hour. Each downstream arrival uses the hour-specific median GTFS travel offset from Stop 6. The candidate shares the same upstream target and stop-hour alighting targets as its reference.
 
-The baseline technique screen gives GA, SA, and PSO the same 10-plan budget and three optimizer seeds. The final GA experiment uses population size 12, optimizer seeds 101, 202, and 303, and the first five matched passenger replications for fitness. Fitness is mean completed wait; an invalid plan, nonfinite objective, or mean final backlog above the matched reference receives infinite fitness. Each seed's searched candidates are checked in search-fitness order on the larger selection set until a candidate passes the unchanged backlog safeguard. Those passing candidates are compared before the final plan is chosen. Both the original search minimum and the passing candidate rank are saved.
+The baseline technique screen gives GA, SA, and PSO the same 10-plan budget and three optimizer seeds. The final GA experiment uses population size 12, optimizer seeds 101, 202, and 303, and the first five matched passenger replications for fitness. Fitness is mean completed wait; an invalid plan, nonfinite objective, or mean final backlog above the matched reference receives infinite fitness. Each seed's searched candidates are checked in search-fitness order on the larger selection set until a candidate passes the unchanged backlog safeguard. Those passing candidates are compared before the final plan is chosen. Both the search minimum and the passing candidate rank are saved.
 
-The final GA search checks 100 unique plans per run and starts with the reference allocation and the simple demand rule. This is still a limited search. The code does not prove a global optimum or broad superiority of GA. The original three-technique screen uses population size 6 for GA. The stored Midterm values are a historical comparison because the corrected upstream rule can change results. They are not hard-coded pass targets for the new model.
+The final GA search checks 100 unique plans per run and starts with the reference allocation and the simple demand rule. This is still a limited search. The code does not prove a global optimum or broad superiority of GA. The three-technique screen uses population size 6 for GA.
 
 The independent evaluation freezes one plan per scenario and period, then creates 30 unused seeds from `SeedSequence([2026, 90902])`. Replication IDs 1001 through 1030 keep these rows distinct. The code checks that the test seeds did not occur in the selection inputs. The test never changes a plan.
 
@@ -83,7 +83,7 @@ The precision rule starts with 30 replications and checks mean completed wait an
 
 Paired comparisons match Replication, Seed, and Period. Stop comparisons also match Stop Sequence. Both sides must have the same unique, complete keys and finite metric values. A candidate-minus-reference interval entirely below zero supports a lower metric for that comparison. An interval containing zero does not support a clear reduction. Stop intervals are pointwise and are not corrected for many simultaneous comparisons.
 
-The larger set used to choose a final plan is a selection set, even where legacy table names call it validation. Its intervals are descriptive. Use the independent test for claims about a frozen plan under fresh passenger-arrival realizations. Report test-set backlog and stop-level tradeoffs, including unfavorable results. The test does not independently validate the real-world model assumptions.
+The larger set used to choose a final plan is a selection set, including tables whose filenames contain validation. Its intervals are descriptive. Use the independent test for claims about a frozen plan under fresh passenger-arrival realizations. Report test-set backlog and stop-level tradeoffs, including unfavorable results. The test does not independently validate the real-world model assumptions.
 
 ## Running the project and output ownership
 
@@ -91,24 +91,7 @@ The larger set used to choose a final plan is a selection set, even where legacy
 
 The script runner captures plain-text outputs and saves figures separately. Use JupyterLab to save notebooks with displayed tables and plots for HTML and PDF export. A run writes to the existing result paths, so preserve any earlier outputs you still need before rerunning. If a run fails, its output folders can contain a mix of earlier and partial results. Resolve the error and complete the notebooks in order before using those results together.
 
-| Owner | Main outputs |
-| --- | --- |
-| Dataset notebook | Cleaned selected-stop CSV, mapping checks, descriptive tables, plots |
-| Baseline notebook | Baseline streams, seeds, replication results, precision and technique-screen tables |
-| Scenario notebook | Scenario reference replication and stop tables, configuration and plots |
-| GA notebook | Selected plans, replication results, safeguards, paired intervals, stop results, independent-test tables |
-| Figure script | Independent-test comparison and queue figures |
-| Script runner | Executed notebooks and the figures generated by the figure script |
-
 The GA notebook rebuilds scenario references from the same frozen raw and clean inputs. It does not depend on loading every exported scenario CSV. Files with the `review_` prefix belong to the independent-test experiment and contain its plans, seeds, replication results, comparisons, and queue traces.
-
-## Experiment design history
-
-An exploratory experiment used a 10-plan GA search and 30 passenger seeds from `SeedSequence([2026, 90901])`. Its comparisons showed that the simple demand rule could beat GA in evening cases. These findings informed the search design.
-
-The final experiment uses 100 unique plans per optimizer seed, population size 12, and a demand-rule starting candidate. Its independent test uses `SeedSequence([2026, 90902])`. The selected plans are frozen before that test, and test outcomes do not change them.
-
-The saved `exploratory_90901_` tables belong to the exploratory experiment. They are separate from the final independent test. The original GA, SA, and PSO technique screen keeps its matched 10-plan budget; its results do not establish broad GA superiority or compare all three methods under the larger final GA budget.
 
 ## Checks and remaining limits
 

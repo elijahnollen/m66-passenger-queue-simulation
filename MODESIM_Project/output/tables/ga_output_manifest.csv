@@ -1,8 +1,7 @@
 File,Directory,Purpose
 ga_search_history.csv,output/tables,GA scenario result or validation evidence
-ga_core_baseline_runs.csv,output/tables,Baseline reproduction evidence
-ga_core_baseline_selected_plans.csv,output/tables,Baseline reproduction evidence
-ga_core_baseline_reproduction_check.csv,output/tables,Baseline reproduction evidence
+ga_core_baseline_runs.csv,output/tables,Baseline GA search and selected plans
+ga_core_baseline_selected_plans.csv,output/tables,Baseline GA search and selected plans
 ga_scenario_highdemand_runs.csv,output/tables,GA scenario result or validation evidence
 ga_scenario_highdemand_selected_plans.csv,output/tables,GA scenario result or validation evidence
 ga_scenario_reducedservice_runs.csv,output/tables,GA scenario result or validation evidence
