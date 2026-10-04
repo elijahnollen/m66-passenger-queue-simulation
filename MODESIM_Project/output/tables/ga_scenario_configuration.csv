@@ -1,5 +1,5 @@
 Scenario,Morning Budget,Evening Budget,Minimum Hourly Trips,Maximum Hourly Trips,Morning Reference Plan,Evening Reference Plan,Search Replications,Validation Replications,Optimizer Seeds,Unique Plans per Optimizer Run
-Baseline,43,44,5,12,"(5, 12, 12, 8, 6)","(8, 12, 11, 8, 5)",5,30,"(101, 202, 303)",10
-High-Demand,43,44,5,12,"(5, 12, 12, 8, 6)","(8, 12, 11, 8, 5)",5,30,"(101, 202, 303)",10
-Reduced-Service,38,39,4,12,"(4, 11, 11, 7, 5)","(7, 11, 10, 7, 4)",5,30,"(101, 202, 303)",10
-Combined,38,39,4,12,"(4, 11, 11, 7, 5)","(7, 11, 10, 7, 4)",5,30,"(101, 202, 303)",10
+Baseline,43,44,5,12,"(5, 12, 12, 8, 6)","(8, 12, 11, 8, 5)",5,30,"(101, 202, 303)",100
+High-Demand,43,44,5,12,"(5, 12, 12, 8, 6)","(8, 12, 11, 8, 5)",5,30,"(101, 202, 303)",100
+Reduced-Service,38,39,4,12,"(4, 11, 11, 7, 5)","(7, 11, 10, 7, 4)",5,30,"(101, 202, 303)",100
+Combined,38,39,4,12,"(4, 11, 11, 7, 5)","(7, 11, 10, 7, 4)",5,30,"(101, 202, 303)",100

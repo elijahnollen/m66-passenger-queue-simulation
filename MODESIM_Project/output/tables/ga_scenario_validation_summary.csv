@@ -1,4 +1,4 @@
 Scenario,Replications Used,Non-Negative Waiting Time Passed,"Bus Occupancy In [0, 60] Passed",Passenger Conservation Passed,Minimum Observed Waiting Time,Minimum Observed Bus Occupancy,Maximum Observed Bus Occupancy
-High-Demand,30,True,True,True,0.00016714175831111788,1,42
+High-Demand,30,True,True,True,0.00024126162907123216,1,41
 Reduced-Service,30,True,True,True,0.00016830666163514252,1,37
-Combined,30,True,True,True,7.381635123238084e-05,1,49
+Combined,30,True,True,True,0.00016830666163514252,2,47

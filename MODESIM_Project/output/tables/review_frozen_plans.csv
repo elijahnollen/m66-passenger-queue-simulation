@@ -1,0 +1,9 @@
+Scenario,Period,Service Plan
+Baseline,Morning,"(8, 9, 12, 8, 6)"
+Baseline,Evening,"(10, 10, 10, 8, 6)"
+High-Demand,Morning,"(7, 12, 11, 7, 6)"
+High-Demand,Evening,"(11, 8, 10, 8, 7)"
+Reduced-Service,Morning,"(7, 9, 10, 7, 5)"
+Reduced-Service,Evening,"(10, 7, 10, 6, 6)"
+Combined,Morning,"(7, 9, 10, 7, 5)"
+Combined,Evening,"(10, 7, 10, 8, 4)"
