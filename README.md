@@ -135,9 +135,7 @@ python MODESIM_Project/code/plot_results.py
 
 A run overwrites existing result filenames. Keep a copy of results you need before rerunning. If a run fails, fix the error and complete the notebook sequence before using the output folders as one result set.
 
-## Reviewer access and a baseline check
-
-This repository is private. Reviewers need repository access or a complete downloaded project folder before using these instructions. A download must include the frozen data, shared modules, notebooks, requirements files, and saved outputs.
+## Baseline check
 
 After setup, run `m66_dataset_analysis.ipynb` and then `m66_baseline_simulation.ipynb`, restarting the kernel before each. Check that the baseline passenger totals are 500 for Morning and 276 for Evening and that conservation, waiting-time, and occupancy checks pass. This sequence checks baseline behavior; it does not regenerate the independent-test results. Run all four notebooks for those results.
 
